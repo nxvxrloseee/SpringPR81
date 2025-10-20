@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Plans</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: navbar"></div>
+
+<main class="admin-container">
+
+    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+    <div class="page-header">
+        <h1>Manage Plans</h1>
+        <a th:href="@{/plans/new}" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Add New Plan
+        </a>
+    </div>
+
+    <table class="content-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Plan Name</th>
+            <th>CPU</th>
+            <th>RAM</th>
+            <th>SSD</th>
+            <th>Price/Day</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="plan : ${plans}">
+            <td th:text="${plan.planId}">1</td>
+            <td th:text="${plan.planName}">Basic</td>
+            <td th:text="${plan.cpuCores} + ' Cores'">2 Cores</td>
+            <td th:text="${plan.ramGb} + ' GB'">4 GB</td>
+            <td th:text="${plan.ssdGb} + ' GB'">50 GB</td>
+            <td th:text="${'$' + plan.pricePerDay}">$0.50</td>
+            <td th:text="${plan.status.statusName}">Active</td>
+            <td class="actions">
+                <a th:href="@{/plans/edit/{id}(id=${plan.planId})}" title="Edit">
+                    <i class="fa-solid fa-pencil"></i>
+                </a>
+                <a th:href="@{/plans/delete/{id}(id=${plan.planId})}" class="delete" title="Delete" onclick="return confirm('Are you sure?')">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

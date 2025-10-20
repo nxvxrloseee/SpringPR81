@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: navbar"></div>
+
+<main class="admin-container">
+
+    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+    <div class="page-header">
+        <h1>Manage Users</h1>
+        <a th:href="@{/users/new}" class="btn btn-primary">
+            <i class="fa-solid fa-user-plus"></i> Add New User
+        </a>
+    </div>
+
+    <div style="overflow-x: auto;">
+        <table class="content-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Balance</th>
+                <th>Registered</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.userId}">1</td>
+                <td th:text="${user.username}">admin</td>
+                <td th:text="${user.email}">admin@example.com</td>
+                <td th:text="${user.role?.roleName}">ADMIN</td>
+                <td th:text="${'$' + #numbers.formatDecimal(user.balance, 1, 2, 'COMMA')}">$100.00</td>
+                <td th:text="${#temporals.format(user.createdAt, 'dd-MM-yyyy HH:mm')}">01-01-2024 12:00</td>
+                <td class="actions">
+                    <a th:href="@{/users/edit/{id}(id=${user.userId})}" title="Edit">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </a>
+                    <a th:href="@{/users/delete/{id}(id=${user.userId})}" class="delete" title="Delete" onclick="return confirm('Are you sure?')">
+                        <i class="fa-solid fa-user-times"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

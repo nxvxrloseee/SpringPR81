@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Plan Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: navbar"></div>
+
+<main class="admin-container">
+    <div class="form-card">
+
+        <h2 th:text="${pageTitle}">Plan Form</h2>
+
+        <form th:action="@{${planDto.planId == null} ? '/plans/save' : '/plans/update/' + ${planDto.planId}}"
+              th:object="${planDto}"
+              method="post">
+
+            <input type="hidden" th:field="*{planId}" th:if="*{planId != null}">
+
+            <div class="form-group">
+                <label for="planName">Plan Name</label>
+                <input type="text" id="planName" th:field="*{planName}"
+                       th:classappend="${#fields.hasErrors('planName')} ? 'is-invalid'">
+                <div th:if="${#fields.hasErrors('planName')}" th:errors="*{planName}" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="cpuCores">CPU Cores</label>
+                <input type="number" id="cpuCores" th:field="*{cpuCores}"
+                       th:classappend="${#fields.hasErrors('cpuCores')} ? 'is-invalid'">
+                <div th:if="${#fields.hasErrors('cpuCores')}" th:errors="*{cpuCores}" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="ramGb">RAM (GB)</label>
+                <input type="number" id="ramGb" th:field="*{ramGb}"
+                       th:classappend="${#fields.hasErrors('ramGb')} ? 'is-invalid'">
+                <div th:if="${#fields.hasErrors('ramGb')}" th:errors="*{ramGb}" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="ssdGb">SSD (GB)</label>
+                <input type="number" id="ssdGb" th:field="*{ssdGb}"
+                       th:classappend="${#fields.hasErrors('ssdGb')} ? 'is-invalid'">
+                <div th:if="${#fields.hasErrors('ssdGb')}" th:errors="*{ssdGb}" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="pricePerDay">Price Per Day</label>
+                <input type="number" step="0.01" id="pricePerDay" th:field="*{pricePerDay}"
+                       th:classappend="${#fields.hasErrors('pricePerDay')} ? 'is-invalid'">
+                <div th:if="${#fields.hasErrors('pricePerDay')}" th:errors="*{pricePerDay}" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="statusId">Status</label>
+                <select id="statusId" th:field="*{statusId}"
+                        th:classappend="${#fields.hasErrors('statusId')} ? 'is-invalid'">
+                    <option value="">-- Select Status --</option>
+                    <option th:each="status : ${allStatuses}"
+                            th:value="${status.statusId}"
+                            th:text="${status.statusName}">
+                    </option>
+                </select>
+                <div th:if="${#fields.hasErrors('statusId')}" th:errors="*{statusId}" class="error-message"></div>
+            </div>
+
+            <div class="form-actions">
+                <a th:href="@{/plans}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-save"></i> Save Plan
+                </button>
+            </div>
+        </form>
+
+    </div>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

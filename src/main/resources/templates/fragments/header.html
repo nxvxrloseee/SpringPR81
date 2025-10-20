@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div th:fragment="navbar">
+    <header>
+        <a th:href="@{/}" class="logo">
+            <i class="fas fa-server logo-icon"></i>
+            ServerHub
+        </a>
+
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Главная</a></li>
+                <li><a th:href="@{/plans}">Тарифы</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-buttons" style="display: flex; gap: 1rem;">
+            <th:block th:unless="${#authorization.expression('isAuthenticated()')}">
+                <a th:href="@{/auth/login}" class="secondary-button">Вход</a>
+                <a th:href="@{/auth/register}" class="cta-button">Регистрация</a>
+            </th:block>
+
+            <th:block th:if="${#authorization.expression('isAuthenticated()')}">
+                <a th:href="@{/auth/panel}" class="secondary-button">Панель</a>
+                <form th:action="@{/auth/logout}" method="post">
+                    <button type="submit" class="cta-button">Logout</button>
+                </form>
+            </th:block>
+        </div>
+    </header>
+</div>
+</body>
+</html>

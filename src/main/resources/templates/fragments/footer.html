@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ru">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div th:fragment="footer">
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>ServerHub</h3>
+                <p>Предоставляем высокопроизводительные серверные решения для бизнеса и разработчиков по всему миру с X года.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Услуги</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Виртуальные серверы</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Выделенные серверы</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Облачное хранилище</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Управляемый Kubernetes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Резервное копирование</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Поддержка</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Документация</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Сообщество</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Статус системы</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Контактная поддержка</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Открыть тикет</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column" sec:authorize="hasRole('ADMIN')">
+                <h3>Панель</h3>
+                <ul>
+                    <li><a th:href="@{/users}"><i class="fas fa-chevron-right"></i> Пользователи</a></li>
+                    <li><a th:href="@{/servers}"><i class="fas fa-chevron-right"></i> Серверы</a></li>
+                    <li><a th:href="@{/plans}"><i class="fas fa-chevron-right"></i> Тарифы</a></li>
+                    <li><a th:href="@{/payments}"><i class="fas fa-chevron-right"></i> Платежи</a></li>
+                    <li><a th:href="@{/invoices}"><i class="fas fa-chevron-right"></i> Счета</a></li>
+                    <li><a th:href="@{/status}"><i class="fas fa-chevron-right"></i> Статусы</a></li>
+                    <li><a th:href="@{/os}"><i class="fas fa-chevron-right"></i> ОС</a></li>
+                    <li><a th:href="@{/roles}"><i class="fas fa-chevron-right"></i> Роли</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-envelope"></i> support@serverhub.com</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> +7 (800) 555-35-35</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Москва, ул. Серверная, 15</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; 2025 ServerHub. Все права защищены.
+        </div>
+    </footer>
+</div>
+</body>
+</html>

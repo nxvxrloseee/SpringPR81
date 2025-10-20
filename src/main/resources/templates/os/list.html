@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage OS</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: navbar"></div>
+
+<main class="admin-container">
+
+    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+    <div class="page-header">
+        <h1>Manage Operating Systems</h1>
+        <a th:href="@{/os/new}" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Add New OS
+        </a>
+    </div>
+
+    <table class="content-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>OS Name</th>
+            <th>Version</th>
+            <th>Family</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="os : ${osList}">
+            <td th:text="${os.osId}">1</td>
+            <td th:text="${os.osName}">Ubuntu</td>
+            <td th:text="${os.version}">22.04</td>
+            <td th:text="${os.family}">Linux</td>
+            <td class="actions">
+                <a th:href="@{/os/edit/{id}(id=${os.osId})}" title="Edit">
+                    <i class="fa-solid fa-pencil"></i>
+                </a>
+                <a th:href="@{/os/delete/{id}(id=${os.osId})}" class="delete" title="Delete" onclick="return confirm('Are you sure?')">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

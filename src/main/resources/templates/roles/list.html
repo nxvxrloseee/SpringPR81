@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Roles</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: navbar"></div>
+
+<main class="admin-container">
+
+    <div th:if="${successMessage}" class="alert alert-success">
+        <i class="fa-solid fa-check-circle"></i>
+        <span th:text="${successMessage}"></span>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div class="page-header">
+        <h1>Manage Roles</h1>
+        <a th:href="@{/roles/new}" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Add New Role
+        </a>
+    </div>
+
+    <table class="content-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Role Name</th>
+            <th>Users</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="role : ${roles}">
+            <td th:text="${role.roleId}">1</td>
+            <td th:text="${role.roleName}">ADMIN</td>
+            <td th:text="${role.users != null ? role.users.size() : 0}">5</td>
+            <td class="actions">
+                <a th:href="@{/roles/edit/{id}(id=${role.roleId})}" title="Edit">
+                    <i class="fa-solid fa-pencil"></i>
+                </a>
+                <a th:href="@{/roles/delete/{id}(id=${role.roleId})}" class="delete" title="Delete" onclick="return confirm('Are you sure you want to delete this role?')">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

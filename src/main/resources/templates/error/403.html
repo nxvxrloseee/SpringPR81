@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступ запрещен (403)</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-styles.css}">
+    <style>
+        .error-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .error-card {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 10px;
+            padding: 4rem;
+            max-width: 600px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(255, 46, 99, 0.3);
+        }
+        .error-card h1 {
+            font-size: 5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .error-card h2 {
+            font-size: 2rem;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+        }
+        .error-card p {
+            color: var(--secondary);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="background-animation"></div>
+
+<div class="error-container">
+    <div class="error-card">
+        <h1>403</h1>
+        <h2>Доступ запрещен</h2>
+        <p>К сожалению, у вас нет прав для просмотра этой страницы. Обратитесь к администратору, если считаете, что это ошибка.</p>
+
+        <a th:href="@{/}" class="btn btn-secondary">
+            <i class="fas fa-home"></i> Вернуться на главную
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Servers</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: navbar"></div>
+
+<main class="admin-container">
+
+    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+    <div class="page-header">
+        <h1>Manage Servers</h1>
+        <a th:href="@{/servers/new}" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Add New Server
+        </a>
+    </div>
+
+    <div style="overflow-x: auto;"> <table class="content-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Server Name</th>
+            <th>User</th>
+            <th>Location</th>
+            <th>IPv4</th>
+            <th>Plan</th>
+            <th>OS</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="server : ${servers}">
+            <td th:text="${server.serverId}">1</td>
+            <td th:text="${server.serverName}">web-01</td>
+            <td th:text="${server.user?.username}">user</td>
+            <td th:text="${server.city + ', ' + server.country}">NY, USA</td>
+            <td th:text="${server.ipv4}">192.168.1.1</td>
+            <td th:text="${server.plan?.planName}">Basic</td>
+            <td th:text="${server.os?.osName}">Ubuntu</td>
+            <td th:text="${server.status?.statusName}">Active</td>
+            <td class="actions">
+                <a th:href="@{/servers/edit/{id}(id=${server.serverId})}" title="Edit">
+                    <i class="fa-solid fa-pencil"></i>
+                </a>
+                <a th:href="@{/servers/delete/{id}(id=${server.serverId})}" class="delete" title="Delete" onclick="return confirm('Are you sure?')">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

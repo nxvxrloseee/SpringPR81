@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ServerHub | Платформа аренды серверов</title>
+</head>
+<body>
+<div class="background-animation"></div>
+
+<div th:replace="fragments/header :: navbar"></div>
+
+<section class="hero">
+    <h1>Мощные серверы для ваших амбиций</h1>
+    <p>ServerHub предоставляет высокопроизводительные серверы с мгновенным развертыванием по всему миру. Сосредоточьтесь на развитии, а инфраструктуру доверьте нам.</p>
+    <div class="hero-buttons">
+        <a href="#" class="cta-button">Начать сейчас</a>
+        <a href="#" class="secondary-button">Узнать больше</a>
+    </div>
+</section>
+
+<section class="features">
+    <h2 class="section-title">Почему <span>ServerHub</span></h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Молниеносная скорость</h3>
+            <p>Наши серверы используют SSD NVMe и процессоры последнего поколения для максимальной производительности.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-globe"></i>
+            </div>
+            <h3>Глобальная инфраструктура</h3>
+            <p>18 дата-центров по всему миру для минимальных задержек и высокой доступности.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Безопасность</h3>
+            <p>Защита от DDoS, регулярные бэкапы и изолированная среда для ваших данных.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-sliders-h"></i>
+            </div>
+            <h3>Гибкие настройки</h3>
+            <p>Полный контроль над конфигурацией сервера. Масштабируйте ресурсы одним кликом.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-headset"></i>
+            </div>
+            <h3>Поддержка 24/7</h3>
+            <p>Наши эксперты готовы помочь в любое время суток на вашем родном языке.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-wallet"></i>
+            </div>
+            <h3>Прозрачные тарифы</h3>
+            <p>Никаких скрытых платежей. Оплачивайте только за используемые ресурсы.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pricing">
+    <h2 class="section-title">Наши <span>тарифы</span></h2>
+    <div class="pricing-plans">
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <h3 class="pricing-name">Стартовый</h3>
+                <div class="pricing-price">$19<span class="pricing-period">/месяц</span></div>
+            </div>
+            <ul class="pricing-features">
+                <li><i class="fas fa-check"></i> 2 vCPU ядра</li>
+                <li><i class="fas fa-check"></i> 4GB RAM</li>
+                <li><i class="fas fa-check"></i> 50GB SSD</li>
+                <li><i class="fas fa-check"></i> Неограниченный трафик</li>
+                <li><i class="fas fa-check"></i> 1 IPv4 адрес</li>
+                <li><i class="fas fa-check"></i> 1 IPv6 адрес</li>
+            </ul>
+            <a href="#" class="cta-button">Выбрать</a>
+        </div>
+
+        <div class="pricing-card popular">
+            <div class="pricing-header">
+                <h3 class="pricing-name">Профессиональный</h3>
+                <div class="pricing-price">$49<span class="pricing-period">/месяц</span></div>
+            </div>
+            <ul class="pricing-features">
+                <li><i class="fas fa-check"></i> 4 vCPU ядра</li>
+                <li><i class="fas fa-check"></i> 8GB RAM</li>
+                <li><i class="fas fa-check"></i> 150GB SSD</li>
+                <li><i class="fas fa-check"></i> Неограниченный трафик</li>
+                <li><i class="fas fa-check"></i> 2 IPv4 адреса</li>
+                <li><i class="fas fa-check"></i> 2 IPv6 адрес</li>
+                <li><i class="fas fa-check"></i> Бесплатный SSL</li>
+            </ul>
+            <a href="#" class="cta-button">Выбрать</a>
+        </div>
+
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <h3 class="pricing-name">Бизнес</h3>
+                <div class="pricing-price">$99<span class="pricing-period">/месяц</span></div>
+            </div>
+            <ul class="pricing-features">
+                <li><i class="fas fa-check"></i> 8 vCPU ядер</li>
+                <li><i class="fas fa-check"></i> 16GB RAM</li>
+                <li><i class="fas fa-check"></i> 300GB SSD</li>
+                <li><i class="fas fa-check"></i> Неограниченный трафик</li>
+                <li><i class="fas fa-check"></i> 4 IPv4 адреса</li>
+                <li><i class="fas fa-check"></i> 4 IPv6 адрес</li>
+                <li><i class="fas fa-check"></i> Приоритетная поддержка</li>
+            </ul>
+            <a href="#" class="cta-button">Выбрать</a>
+        </div>
+    </div>
+</section>
+
+<section class="infrastructure">
+    <h2 class="section-title">Наша <span>инфраструктура</span></h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: var(--secondary); line-height: 1.6;">
+        Мы размещаем серверы в ведущих дата-центрах по всему миру, обеспечивая минимальную задержку и максимальную надежность для ваших проектов.
+    </p>
+    <div class="map-container">
+        <div class="world-map">
+            <div class="location"></div>
+            <div class="location"></div>
+            <div class="location"></div>
+            <div class="location"></div>
+            <div class="location"></div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script>
+    // Простая анимация для элементов при прокрутке
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeIn 0.8s ease forwards`;
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Наблюдаем за всеми элементами, которые должны появляться при прокрутке
+        document.querySelectorAll('.feature-card, .pricing-card, .world-map').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    });
+</script>
+</body>
+</html>
