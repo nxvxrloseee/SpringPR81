@@ -7,7 +7,7 @@ WORKDIR /app
 
 
 COPY pom.xml .
-COPY settings.xml .
+
 
 COPY src /app/src
 
