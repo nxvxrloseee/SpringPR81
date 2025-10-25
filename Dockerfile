@@ -1,8 +1,7 @@
-# --- СТАДИЯ 1: Сборка (Build Stage) ---
-# Используем ваш исходный образ OpenJDK 25.
+# --- СТАДИЯ 1: Сборка (Build Stage) ---.
 FROM eclipse-temurin:25-jdk-jammy AS builder
 
-# Установим Maven вручную, так как готового тега нет.
+# Установим Maven вручную.
 # Обновляем список пакетов и устанавливаем Maven.
 RUN apt-get update && \
     apt-get install -y maven && \
@@ -16,12 +15,10 @@ COPY pom.xml .
 COPY src /app/src
 
 # Соберите приложение в JAR-файл
-# Теперь команда 'mvn' будет найдена
 RUN mvn clean package -DskipTests
 
 # ----------------------------------------------------------------------
 # --- СТАДИЯ 2: Запуск (Runtime Stage) ---
-# Используем минимальный образ JRE 25
 FROM eclipse-temurin:25-jre-jammy
 
 # Устанавливаем переменные окружения
